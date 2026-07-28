@@ -7,8 +7,7 @@
  */
 
 // Use the same domain the website is served from.
-const BASE_URL = ''
-
+const BASE_URL = 'https://explain-the-invisible-api.onrender.com'
 /**
  * Fetch a visualization dataset from the backend.
  *
