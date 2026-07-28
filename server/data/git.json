@@ -1,0 +1,56 @@
+{
+  "topic": "Git Commit Workflow",
+  "difficulty": "Beginner",
+  "template": "linear-flow",
+  "steps": [
+    {
+      "id": "working-tree",
+      "label": "Working Tree",
+      "description": "You edit files in your working tree — the actual directory on your disk. Git is aware of these files but does not automatically track every save. Changes here are called 'unstaged' and don't yet belong to any commit.",
+      "icon": "✏️",
+      "actors": ["Developer", "Working Tree"]
+    },
+    {
+      "id": "git-status",
+      "label": "Check Status",
+      "description": "Running git status shows the difference between your working tree, the staging area, and the latest commit. Files show up as untracked, modified, or staged. This is the map before you navigate.",
+      "icon": "🗺️",
+      "actors": ["Developer", "Git"]
+    },
+    {
+      "id": "git-add",
+      "label": "Stage Changes",
+      "description": "git add moves specific files (or hunks) from the working tree into the staging area (also called the index). Only what you've staged will go into the next commit — this lets you group related changes precisely.",
+      "icon": "📦",
+      "actors": ["Developer", "Staging Area"]
+    },
+    {
+      "id": "git-diff",
+      "label": "Review Staged Diff",
+      "description": "git diff --staged shows exactly what is queued for the next commit, line by line. Reviewing this diff before committing is how you catch accidental changes, debug prints, or incomplete work before it's recorded.",
+      "icon": "🔬",
+      "actors": ["Developer", "Staging Area"]
+    },
+    {
+      "id": "git-commit",
+      "label": "Create Commit",
+      "description": "git commit takes a snapshot of everything in the staging area and stores it as a permanent object in the repository. Git computes a SHA-1 hash of the tree, your metadata, and the parent commit — this hash is the commit's ID.",
+      "icon": "📸",
+      "actors": ["Developer", "Local Repository"]
+    },
+    {
+      "id": "commit-object",
+      "label": "Commit Object Stored",
+      "description": "The commit object is written to the .git/objects directory. It records the tree (file snapshot), parent commit hash, author, committer, timestamp, and your message. The current branch pointer (HEAD) now points to this new commit.",
+      "icon": "🏷️",
+      "actors": ["Local Repository"]
+    },
+    {
+      "id": "git-push",
+      "label": "Push to Remote",
+      "description": "git push uploads your local commits to the remote repository (e.g. GitHub). Git sends only the objects the remote doesn't already have. The remote branch is then updated to point to your latest commit.",
+      "icon": "🚀",
+      "actors": ["Local Repository", "Remote Repository"]
+    }
+  ]
+}

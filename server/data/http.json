@@ -1,0 +1,56 @@
+{
+  "topic": "HTTP Request Lifecycle",
+  "difficulty": "Beginner",
+  "template": "linear-flow",
+  "steps": [
+    {
+      "id": "url-parse",
+      "label": "URL Parsing",
+      "description": "The browser breaks the URL into its components: protocol (http/https), hostname, port, path, query string, and fragment. Each part tells the browser something different about where to go and what to ask for.",
+      "icon": "🔗",
+      "actors": ["Browser"]
+    },
+    {
+      "id": "dns-resolve",
+      "label": "DNS Resolution",
+      "description": "The browser resolves the hostname to an IP address via DNS. If the address is already cached, this step is skipped. Otherwise, the full DNS lookup chain runs before the connection can begin.",
+      "icon": "📖",
+      "actors": ["Browser", "DNS Resolver"]
+    },
+    {
+      "id": "tcp-connect",
+      "label": "TCP Connection",
+      "description": "The browser opens a TCP connection to the server's IP on port 80 (HTTP) or 443 (HTTPS). For HTTPS, a TLS handshake follows before any data is exchanged, establishing an encrypted channel.",
+      "icon": "🔌",
+      "actors": ["Browser", "Server"]
+    },
+    {
+      "id": "request-sent",
+      "label": "Request Sent",
+      "description": "The browser sends an HTTP request message. The first line is the request line (e.g. GET /index.html HTTP/1.1). It's followed by headers like Host, User-Agent, Accept, and an optional body for POST requests.",
+      "icon": "📤",
+      "actors": ["Browser → Server"]
+    },
+    {
+      "id": "server-process",
+      "label": "Server Processing",
+      "description": "The server receives the request, routes it to the correct handler, executes any application logic (database queries, template rendering, API calls), and assembles the HTTP response.",
+      "icon": "⚙️",
+      "actors": ["Server"]
+    },
+    {
+      "id": "response-sent",
+      "label": "Response Sent",
+      "description": "The server sends back an HTTP response with a status line (e.g. HTTP/1.1 200 OK), response headers (Content-Type, Cache-Control, Set-Cookie), and the response body (HTML, JSON, image data, etc.).",
+      "icon": "📥",
+      "actors": ["Server → Browser"]
+    },
+    {
+      "id": "browser-render",
+      "label": "Browser Renders",
+      "description": "The browser parses the response body. For HTML, it builds the DOM tree, fetches sub-resources (CSS, JS, images), executes scripts, and paints the page. Each sub-resource may trigger its own HTTP request lifecycle.",
+      "icon": "🖥️",
+      "actors": ["Browser"]
+    }
+  ]
+}

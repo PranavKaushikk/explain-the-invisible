@@ -1,0 +1,218 @@
+.visualization-section__trace {
+  position: relative;
+  height: 26px;
+  margin: 0 18px;
+}
+
+.visualization-section__trace svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.visualization-section__rail {
+  stroke: var(--line-strong);
+  stroke-width: 1.5;
+  stroke-dasharray: 3 5;
+  fill: none;
+}
+
+.visualization-section__pulse {
+  fill: var(--signal);
+  filter: drop-shadow(0 0 6px var(--signal));
+}
+
+.visualization-section__pulse--active {
+  animation: pulse-travel 2s ease-in-out infinite;
+}
+
+@keyframes pulse-travel {
+  0%   { cy: 0;  opacity: 1; }
+  80%  { cy: 26; opacity: 1; }
+  100% { cy: 26; opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visualization-section__pulse--active {
+    animation: none;
+  }
+}
+
+.visualization-section__canvas-wrap {
+  padding: 0 18px 18px;
+}
+
+.visualization-section__canvas {
+  position: relative;
+  border: 1px dashed var(--line-strong);
+  border-radius: var(--radius-md);
+  min-height: 300px;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 26px 26px;
+  background-color: rgba(255, 255, 255, 0.012);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px 24px;
+  overflow: hidden;
+}
+
+/* ---- idle / unsupported empty state ---- */
+
+.visualization-section__empty {
+  font-family: var(--font-mono);
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 40ch;
+  line-height: 1.7;
+}
+
+.visualization-section__icon-lg {
+  display: block;
+  font-size: 32px;
+  margin-bottom: 12px;
+}
+
+.visualization-section__unsupported-msg {
+  margin-top: 8px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.visualization-section__unsupported-msg b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.visualization-section__unsupported-msg em {
+  color: var(--signal);
+  font-style: normal;
+}
+
+.visualization-section__comment {
+  color: var(--muted-2);
+}
+
+.visualization-section__empty b {
+  color: var(--text);
+  font-weight: 500;
+}
+
+/* ---- badges ---- */
+
+.visualization-section__badge {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted-2);
+}
+
+.visualization-section__badge--right {
+  left: auto;
+  right: 12px;
+}
+
+.visualization-section__badge--live {
+  color: var(--signal);
+}
+
+/* ---- active step display ---- */
+
+.visualization-section__step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 480px;
+  animation: step-appear 0.3s ease;
+}
+
+@keyframes step-appear {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .visualization-section__step {
+    animation: none;
+  }
+}
+
+.visualization-section__step-progress {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--line-strong);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+.visualization-section__step-progress-fill {
+  height: 100%;
+  background: var(--signal);
+  box-shadow: 0 0 8px var(--signal-dim);
+  transition: width 0.4s ease;
+}
+
+.visualization-section__step-counter {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-2);
+  letter-spacing: 0.06em;
+}
+
+.visualization-section__step-icon {
+  font-size: 40px;
+  line-height: 1;
+  filter: drop-shadow(0 0 12px rgba(76, 217, 192, 0.3));
+}
+
+.visualization-section__step-label {
+  font-family: var(--font-mono);
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--signal);
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+.visualization-section__step-desc {
+  font-family: var(--font-sans);
+  font-size: 13.5px;
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 44ch;
+  margin: 0;
+}
+
+.visualization-section__step-actors {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.visualization-section__actor-chip {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.07em;
+  color: var(--amber);
+  border: 1px solid rgba(242, 169, 59, 0.3);
+  background: rgba(242, 169, 59, 0.06);
+  padding: 3px 9px;
+  border-radius: 5px;
+  text-transform: uppercase;
+}

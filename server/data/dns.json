@@ -1,0 +1,56 @@
+{
+  "topic": "DNS Resolution from backend",
+  "difficulty": "Beginner",
+  "template": "linear-flow",
+  "steps": [
+    {
+      "id": "browser-cache",
+      "label": "Browser Checks Cache",
+      "description": "Before asking anyone else, the browser looks up the hostname in its own DNS cache. If it already has a recent answer, it uses that IP address immediately without making any network requests.",
+      "icon": "🔍",
+      "actors": ["Browser"]
+    },
+    {
+      "id": "os-cache",
+      "label": "OS & Hosts File Check",
+      "description": "If the browser cache misses, the operating system checks its own DNS cache and the local hosts file. This is where entries like 127.0.0.1 localhost are defined and always resolved first.",
+      "icon": "💻",
+      "actors": ["Browser", "Operating System"]
+    },
+    {
+      "id": "recursive-resolver",
+      "label": "Query Recursive Resolver",
+      "description": "The OS sends a DNS query to a recursive resolver — usually provided by your ISP or a public service like 8.8.8.8. This resolver does the heavy lifting of finding the answer on your behalf.",
+      "icon": "📡",
+      "actors": ["Operating System", "Recursive Resolver"]
+    },
+    {
+      "id": "root-server",
+      "label": "Root Name Server",
+      "description": "If the resolver doesn't have the answer cached, it asks a root name server. There are 13 sets of root servers worldwide. They don't know the IP, but they know which TLD server to ask next.",
+      "icon": "🌍",
+      "actors": ["Recursive Resolver", "Root Server"]
+    },
+    {
+      "id": "tld-server",
+      "label": "TLD Name Server",
+      "description": "The resolver asks the TLD name server for the domain's extension (e.g. .com, .org). The TLD server responds with the address of the authoritative name server for the specific domain.",
+      "icon": "🗂️",
+      "actors": ["Recursive Resolver", "TLD Server"]
+    },
+    {
+      "id": "authoritative-server",
+      "label": "Authoritative Name Server",
+      "description": "The resolver queries the authoritative name server — the definitive source of DNS records for this domain. It returns the A record containing the actual IP address of the server.",
+      "icon": "📋",
+      "actors": ["Recursive Resolver", "Authoritative Server"]
+    },
+    {
+      "id": "ip-returned",
+      "label": "IP Address Returned",
+      "description": "The recursive resolver caches the answer and returns the IP address to the operating system, which passes it to the browser. The browser can now open a TCP connection to that IP.",
+      "icon": "✅",
+      "actors": ["Recursive Resolver", "Browser"]
+    }
+  ]
+}

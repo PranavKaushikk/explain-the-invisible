@@ -1,0 +1,56 @@
+{
+  "topic": "Docker Container Startup",
+  "difficulty": "Beginner",
+  "template": "linear-flow",
+  "steps": [
+    {
+      "id": "docker-run",
+      "label": "docker run Command",
+      "description": "You issue docker run <image>. The Docker CLI sends this instruction to the Docker daemon (dockerd) running on the host. The daemon is the engine that actually manages images, containers, networks, and volumes.",
+      "icon": "⌨️",
+      "actors": ["Developer", "Docker CLI"]
+    },
+    {
+      "id": "image-check",
+      "label": "Image Lookup",
+      "description": "The daemon checks the local image cache for the requested image and tag. If the image is found locally, no download is needed. If it's missing, the daemon will pull it from the configured registry before continuing.",
+      "icon": "🔍",
+      "actors": ["Docker Daemon", "Image Cache"]
+    },
+    {
+      "id": "image-pull",
+      "label": "Pull from Registry",
+      "description": "If the image isn't cached, the daemon contacts the registry (Docker Hub by default) and downloads the image layer by layer. Layers that already exist on the host are skipped — only the missing delta is transferred.",
+      "icon": "⬇️",
+      "actors": ["Docker Daemon", "Registry"]
+    },
+    {
+      "id": "layer-stack",
+      "label": "Union File System Assembled",
+      "description": "Docker stacks the image's read-only layers using a union file system (OverlayFS on Linux). A thin writable layer is added on top. This writable layer is private to this container and discarded when the container is removed.",
+      "icon": "🗂️",
+      "actors": ["Docker Daemon", "File System"]
+    },
+    {
+      "id": "namespace-setup",
+      "label": "Namespaces & cgroups",
+      "description": "The daemon creates Linux namespaces to isolate the container: a PID namespace (its own process tree), a network namespace (its own network stack), a mount namespace (its own file system view), and a UTS namespace (its own hostname).",
+      "icon": "🔒",
+      "actors": ["Docker Daemon", "Linux Kernel"]
+    },
+    {
+      "id": "network-attach",
+      "label": "Network Attached",
+      "description": "Docker assigns the container an IP address on a virtual bridge network (docker0 by default) and sets up veth pair interfaces. Port mappings specified with -p are configured as iptables rules on the host.",
+      "icon": "🌐",
+      "actors": ["Docker Daemon", "Network"]
+    },
+    {
+      "id": "entrypoint-run",
+      "label": "Entrypoint Executes",
+      "description": "The container's entrypoint process (PID 1 inside the container) starts — this is the CMD or ENTRYPOINT defined in the Dockerfile. When this process exits, the container stops. All logs from this process go to Docker's logging driver.",
+      "icon": "▶️",
+      "actors": ["Container", "Application"]
+    }
+  ]
+}

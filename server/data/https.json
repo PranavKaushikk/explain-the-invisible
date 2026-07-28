@@ -1,0 +1,49 @@
+{
+  "topic": "HTTPS Handshake",
+  "difficulty": "Beginner",
+  "template": "linear-flow",
+  "steps": [
+    {
+      "id": "browser-prep",
+      "label": "🔥 FROM BACKEND 🔥",
+      "description": "The browser parses the URL, checks its cache, and prepares to reach out to the server. It resolves the hostname to begin establishing a connection.",
+      "icon": "🌐",
+      "actors": ["Browser"]
+    },
+    {
+      "id": "dns-lookup",
+      "label": "DNS Lookup",
+      "description": "The browser asks a DNS resolver to translate the hostname (e.g. example.com) into an IP address. The resolver may query root, TLD, and authoritative name servers before returning a result.",
+      "icon": "📖",
+      "actors": ["Browser", "DNS Resolver"]
+    },
+    {
+      "id": "tcp-handshake",
+      "label": "TCP Handshake",
+      "description": "A reliable connection is established using the three-way TCP handshake: the browser sends SYN, the server replies SYN-ACK, and the browser confirms with ACK. Both sides are now in sync.",
+      "icon": "🤝",
+      "actors": ["Browser", "Server"]
+    },
+    {
+      "id": "tls-handshake",
+      "label": "TLS Handshake",
+      "description": "The browser and server negotiate a cipher suite, exchange certificates, and establish shared encryption keys. All subsequent traffic will be encrypted — this is what turns HTTP into HTTPS.",
+      "icon": "🔒",
+      "actors": ["Browser", "Server"]
+    },
+    {
+      "id": "http-request",
+      "label": "HTTP Request",
+      "description": "The browser sends an encrypted HTTP request (e.g. GET /) over the established secure channel. Headers like Host, Accept, and cookies travel with the request.",
+      "icon": "📤",
+      "actors": ["Browser → Server"]
+    },
+    {
+      "id": "http-response",
+      "label": "HTTP Response",
+      "description": "The server processes the request and sends back an encrypted HTTP response — typically 200 OK with the HTML, CSS, and JS the browser needs to render the page.",
+      "icon": "📥",
+      "actors": ["Server → Browser"]
+    }
+  ]
+}

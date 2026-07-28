@@ -1,0 +1,217 @@
+.timeline-section {
+  border-top: 1px solid var(--line);
+  padding: 16px 18px 20px;
+}
+
+.timeline-section__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-2);
+  margin-bottom: 10px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* ---- Step chips ---- */
+
+.timeline-section__steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 16px;
+}
+
+.timeline-section__step-chip {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--line-strong);
+  border-radius: 6px;
+  padding: 5px 10px 5px 7px;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  text-align: left;
+}
+
+.timeline-section__step-chip:hover {
+  color: var(--text);
+  border-color: var(--muted-2);
+}
+
+.timeline-section__step-chip--done {
+  color: var(--muted-2);
+  border-color: var(--line);
+}
+
+.timeline-section__step-chip--done .timeline-section__step-chip-num {
+  background: var(--muted-2);
+  color: var(--ink);
+}
+
+.timeline-section__step-chip--active {
+  color: var(--signal);
+  border-color: var(--signal-dim);
+  background: rgba(76, 217, 192, 0.06);
+}
+
+.timeline-section__step-chip--active .timeline-section__step-chip-num {
+  background: var(--signal);
+  color: var(--ink);
+}
+
+.timeline-section__step-chip-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--line-strong);
+  color: var(--muted);
+  font-size: 9px;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.timeline-section__step-chip-label {
+  white-space: nowrap;
+}
+
+/* ---- Scrubber ---- */
+
+.timeline-section__scrubber {
+  position: relative;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.timeline-section__track {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: var(--line-strong);
+  border-radius: 2px;
+}
+
+.timeline-section__track-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: var(--signal);
+  border-radius: 2px;
+  box-shadow: 0 0 6px var(--signal-dim);
+  transition: width 0.4s ease;
+}
+
+.timeline-section__ticks {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.timeline-section__ticks i {
+  width: 1px;
+  height: 8px;
+  background: var(--line-strong);
+}
+
+.timeline-section__playhead {
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ink);
+  border: 2px solid var(--signal);
+  box-shadow: 0 0 10px var(--signal-dim);
+  transition: left 0.4s ease;
+}
+
+/* ---- Transport controls ---- */
+
+.timeline-section__controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.timeline-section__ctrl-btn {
+  font-family: var(--font-mono);
+  width: 38px;
+  height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--line-strong);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 15px;
+  transition: all 0.15s ease;
+}
+
+.timeline-section__ctrl-btn:hover:not(:disabled) {
+  color: var(--signal);
+  border-color: var(--signal-dim);
+}
+
+.timeline-section__ctrl-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.timeline-section__ctrl-btn--play {
+  width: 46px;
+  height: 46px;
+  font-size: 17px;
+  background: var(--surface-2);
+  color: var(--text);
+  border-color: var(--line-strong);
+}
+
+/* ---- Speed chips ---- */
+
+.timeline-section__speed-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.timeline-section__speed-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--muted-2);
+  background: transparent;
+  padding: 4px 9px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.timeline-section__speed-chip:hover {
+  color: var(--text);
+}
+
+.timeline-section__speed-chip--active {
+  color: var(--signal);
+  border-color: var(--signal-dim);
+  background: rgba(76, 217, 192, 0.06);
+}
