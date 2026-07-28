@@ -3,7 +3,7 @@
  *
  * Responsibilities:
  *   - Parse JSON request bodies.
- *   - Allow the React dev server (Vite, port 5173) to call this API.
+ *   - Allow the React frontend to call this API.
  *   - Mount all API routes under /api.
  *   - Start listening.
  */
@@ -23,7 +23,9 @@ app.use(express.json())
 
 app.use(
   cors({
-    origin: process.env.FRONTEND_ORIGIN || 'http://localhost:5173',
+    origin: process.env.FRONTEND_ORIGIN
+      ? process.env.FRONTEND_ORIGIN.split(',')
+      : ['http://localhost:5173'],
     methods: ['GET'],
   })
 )
