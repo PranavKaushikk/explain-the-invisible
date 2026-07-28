@@ -21,14 +21,8 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
-app.use(
-  cors({
-    origin: process.env.FRONTEND_ORIGIN
-      ? process.env.FRONTEND_ORIGIN.split(',')
-      : ['http://localhost:5173'],
-    methods: ['GET'],
-  })
-)
+// Allow requests from any frontend (temporary for deployment)
+app.use(cors())
 
 // ── API Routes ────────────────────────────────────────────────────────────────
 
