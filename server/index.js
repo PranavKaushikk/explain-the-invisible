@@ -5,7 +5,6 @@
  *   - Parse JSON request bodies.
  *   - Allow the React dev server (Vite, port 5173) to call this API.
  *   - Mount all API routes under /api.
- *   - Serve the React production build.
  *   - Start listening.
  */
 
@@ -13,7 +12,6 @@ require('dotenv').config()
 
 const express = require('express')
 const cors = require('cors')
-const path = require('path')
 const visualizationRoutes = require('./routes/visualization')
 
 const app = express()
@@ -34,18 +32,13 @@ app.use(
 
 app.use('/api', visualizationRoutes)
 
-// ── Serve React Production Build ──────────────────────────────────────────────
+// ── Health Check ──────────────────────────────────────────────────────────────
 
-// Serve all static files from the React build folder
-app.use(express.static(path.join(__dirname, 'dist')))
-
-// For every non-API route, send React's index.html
-app.use((req, res, next) => {
-  if (req.path.startsWith('/api')) {
-    return next()
-  }
-
-  res.sendFile(path.join(__dirname, 'dist', 'index.html'))
+app.get('/', (req, res) => {
+  res.json({
+    status: 'ok',
+    message: 'Explain the Invisible API is running',
+  })
 })
 
 // ── Start Server ──────────────────────────────────────────────────────────────
